@@ -37,7 +37,7 @@ export const feedSlice = createSlice({
     builder
       .addCase(getFeeds.pending, (state) => {
         state.isLoading = true;
-        state.error = null
+        state.error = null;
       })
       .addCase(getFeeds.fulfilled, (state, action) => {
         state.orders = action.payload.orders;
@@ -51,12 +51,12 @@ export const feedSlice = createSlice({
       })
       .addCase(getIngredients.pending, (state) => {
         state.isLoading = true;
-        state.error = null
+        state.error = null;
       })
       .addCase(getIngredients.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.ingredients = action.payload
+        state.ingredients = action.payload;
       })
       .addCase(getIngredients.rejected, (state, action) => {
         state.isLoading = false;
@@ -64,12 +64,12 @@ export const feedSlice = createSlice({
       })
       .addCase(getOrderByNumber.pending, (state) => {
         state.isLoading = true;
-        state.error = null
+        state.error = null;
       })
       .addCase(getOrderByNumber.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.order = action.payload
+        state.order = action.payload;
       })
       .addCase(getOrderByNumber.rejected, (state, action) => {
         state.isLoading = false;

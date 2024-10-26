@@ -4,7 +4,6 @@ import {
   getIngredientsApi,
   getOrderByNumberApi
 } from '../../utils/burger-api';
-import { TIngredient } from '@utils-types';
 
 export const getFeeds = createAsyncThunk('feed/getFeeds', async () =>
   getFeedsApi()

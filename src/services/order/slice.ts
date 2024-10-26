@@ -19,7 +19,9 @@ const initialState: TOrderSlice = {
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
-  reducers: {},
+  reducers: {
+    clearOrder: () => initialState
+  },
   selectors: {
     getNewOrder: (state) => state.newOrder,
     getOrder: (state) => state.order,
@@ -53,3 +55,4 @@ export const orderSlice = createSlice({
 });
 
 export const { getNewOrder, getOrder, getIsLoading } = orderSlice.selectors;
+export const { clearOrder } = orderSlice.actions;

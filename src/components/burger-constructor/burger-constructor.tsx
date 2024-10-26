@@ -1,5 +1,5 @@
 import { FC, useEffect, useMemo, useState } from 'react';
-import { TConstructorIngredient, TIngredient } from '@utils-types';
+import { TConstructorIngredient, TOrder } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
 import { useDispatch, useSelector } from '../../services/store';
 import {
@@ -7,7 +7,11 @@ import {
   getBun,
   getIngredients
 } from '../../services/constructor/slice';
-import { getIsLoading, getNewOrder } from '../../services/order/slice';
+import {
+  clearOrder,
+  getIsLoading,
+  getNewOrder
+} from '../../services/order/slice';
 import { orderBurger } from '../../services/order/actions';
 import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../../utils/cookie';
@@ -26,31 +30,32 @@ export const BurgerConstructor: FC = () => {
   const loading = useSelector(getIsLoading);
 
   const orderData = useSelector(getNewOrder);
-
   const onOrderClick = () => {
-    !getCookie('accessToken') && navigate('/login');
-    if (!constructorItems.bun || orderRequest) return;
-    let IdConstructorItems: string[] = [];
-    if (constructorItems.bun)
-      IdConstructorItems = [...IdConstructorItems, constructorItems.bun._id];
-    if (constructorItems.ingredients) {
-      const IdIngredients = constructorItems.ingredients.map(
-        (item) => item._id
-      );
-      IdConstructorItems = [...IdConstructorItems, ...IdIngredients];
+    if (!getCookie('accessToken')) {
+      navigate('/login');
+    } else {
+      if (!constructorItems.bun || orderRequest) return;
+      let IdConstructorItems: string[] = [];
+      if (constructorItems.bun)
+        IdConstructorItems = [...IdConstructorItems, constructorItems.bun._id];
+      if (constructorItems.ingredients) {
+        const IdIngredients = constructorItems.ingredients.map(
+          (item) => item._id
+        );
+        IdConstructorItems = [...IdConstructorItems, ...IdIngredients];
+      }
+      dispatch(orderBurger(IdConstructorItems));
     }
-    dispatch(orderBurger(IdConstructorItems));
   };
   const [orderRequest, setOrderRequest] = useState(false);
-  const [orderModalData, setOrderModalData] = useState(orderData);
+  const [orderModalData, setOrderModalData] = useState<TOrder | null>(null);
   useEffect(() => {
     setOrderRequest(loading);
     setOrderModalData(orderData);
   }, [orderData, loading]);
   const closeOrderModal = () => {
-    setOrderRequest(false);
-    setOrderModalData(null);
     dispatch(clearConstructor());
+    dispatch(clearOrder());
   };
 
   const price = useMemo(
