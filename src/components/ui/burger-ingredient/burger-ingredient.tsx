@@ -13,12 +13,11 @@ import { TBurgerIngredientUIProps } from './type';
 export const BurgerIngredientUI: FC<TBurgerIngredientUIProps> = memo(
   ({ ingredient, count, handleAdd, locationState }) => {
     const { image, price, name, _id } = ingredient;
-
     return (
       <li className={styles.container}>
         <Link
           className={styles.article}
-          to={`/ingredients/${_id}`}
+          to={`/ingredient/${_id}`}
           state={locationState}
         >
           {count && <Counter count={count} />}
