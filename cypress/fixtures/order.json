@@ -1,0 +1,49 @@
+{
+    "success": true,
+    "order": {
+        "_id": "7556736435870",
+        "status": "done",
+        "name": "Очень бургер",
+        "createdAt": "2024-11-06T13:53:40.437Z",
+        "updatedAt": "2024-11-06T13:53:41.349Z",
+        "number": 76587,
+        "price": 2056,
+        "owner": {
+            "createdAt": "2024-10-25T17:32:41.648Z",
+            "email": "hello@chtoto.ru",
+            "name": "Вася Пупкин",
+            "updatedAt": "2024-10-25T17:47:36.923Z"
+        },
+        "ingredients": [
+            {
+                "calories": 999999999,
+                "carbohydrates": 1,
+                "fat": 5678484,
+                "image": "https://code.s3.yandex.net/react/code/sauce-04.png",
+                "image_large": "https://code.s3.yandex.net/react/code/sauce-04-large.png",
+                "image_mobile": "https://code.s3.yandex.net/react/code/sauce-04-mobile.png",
+                "name": "Супержирный соус",
+                "price": 80,
+                "proteins": 0.1,
+                "type": "sauce",
+                "__v": 0,
+                "_id": "643d69a5c3f7b9001cfa0943"
+            },
+            {
+                "calories": 643,
+                "carbohydrates": 85,
+                "fat": 26,
+                "image": "https://code.s3.yandex.net/react/code/bun-01.png",
+                "image_large": "https://code.s3.yandex.net/react/code/bun-01-large.png",
+                "image_mobile": "https://code.s3.yandex.net/react/code/bun-01-mobile.png",
+                "name": "Флюоресцентная булка R2-D3",
+                "price": 988,
+                "proteins": 44,
+                "type": "bun",
+                "__v": 0,
+                "_id": "643d69a5c3f7b9001cfa093d"
+            }
+        ]
+    },
+    "name": "Очень бургер"
+}

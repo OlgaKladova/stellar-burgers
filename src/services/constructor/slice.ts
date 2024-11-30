@@ -88,3 +88,4 @@ export const {
   clearConstructor
 } = constructorSlice.actions;
 export const { getBun, getIngredients } = constructorSlice.selectors;
+export default constructorSlice.reducer;

@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getIngredients } from './actions';
 import { TIngredient } from '../../utils/types';
-type TIngredientsSlice = {
+export type TIngredientsSlice = {
   ingredients: TIngredient[];
   isLoading: boolean;
   buns: TIngredient[];
   main: TIngredient[];
   sauces: TIngredient[];
+  error: string | null;
 };
 
 export const initialState: TIngredientsSlice = {
@@ -14,7 +15,8 @@ export const initialState: TIngredientsSlice = {
   isLoading: false,
   buns: [],
   main: [],
-  sauces: []
+  sauces: [],
+  error: null
 };
 
 export const ingredientsSlice = createSlice({
@@ -35,10 +37,16 @@ export const ingredientsSlice = createSlice({
     builder
       .addCase(getIngredients.pending, (state) => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(getIngredients.fulfilled, (state, action) => {
         state.ingredients = action.payload;
         state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getIngredients.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message ?? null;
       });
   }
 });
