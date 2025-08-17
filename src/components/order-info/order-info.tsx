@@ -4,8 +4,9 @@ import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from '../../services/store';
-import { getIngredients, getOrderByNumber } from '../../services/feed/actions';
-import { getIngredientsSelector, getOrder } from '../../services/feed/slice';
+import { getOrderByNumber } from '../../services/feed/actions';
+import { getOrder } from '../../services/feed/slice';
+import { getIngredientsSelector } from '../../services/ingredients/slice';
 
 export const OrderInfo: FC = () => {
   const { number } = useParams();
@@ -15,7 +16,6 @@ export const OrderInfo: FC = () => {
   const orderData = useSelector(getOrder);
   useEffect(() => {
     dispatch(getOrderByNumber(Number(number)));
-    dispatch(getIngredients());
   }, []);
   /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {

@@ -36,13 +36,15 @@ export const BurgerConstructor: FC = () => {
     } else {
       if (!constructorItems.bun || orderRequest) return;
       let IdConstructorItems: string[] = [];
-      if (constructorItems.bun)
-        IdConstructorItems = [...IdConstructorItems, constructorItems.bun._id];
       if (constructorItems.ingredients) {
         const IdIngredients = constructorItems.ingredients.map(
           (item) => item._id
         );
-        IdConstructorItems = [...IdConstructorItems, ...IdIngredients];
+        IdConstructorItems = [
+          constructorItems.bun._id,
+          ...IdIngredients,
+          constructorItems.bun._id
+        ];
       }
       dispatch(orderBurger(IdConstructorItems));
     }

@@ -17,6 +17,7 @@ import { useDispatch } from '../../services/store';
 import { useEffect } from 'react';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
 import { checkUserAuth } from '../../services/auth/actions';
+import { getIngredients } from '../../services/ingredients/actions';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,8 +27,10 @@ const App = () => {
   const onClose = () => {
     navigate(-1);
   };
+  const num = location.pathname.split('/').pop();
   useEffect(() => {
     dispatch(checkUserAuth());
+    dispatch(getIngredients());
   }, []);
   return (
     <div className={styles.app}>
@@ -102,7 +105,7 @@ const App = () => {
           <Route
             path='/feed/:number'
             element={
-              <Modal title={''} onClose={onClose}>
+              <Modal title={`#${num}`} onClose={onClose}>
                 <OrderInfo />
               </Modal>
             }
@@ -111,7 +114,7 @@ const App = () => {
             path='/profile/orders/:number'
             element={
               <OnlyAuth>
-                <Modal title={''} onClose={onClose}>
+                <Modal title={`#${num}`} onClose={onClose}>
                   <OrderInfo />
                 </Modal>
               </OnlyAuth>
